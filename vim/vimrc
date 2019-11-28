@@ -1,0 +1,77 @@
+source ~/.vim/conf/theme.vim
+
+source ~/.vim/conf/map.vim
+source ~/.vim/conf/nerdtree.vim
+source ~/.vim/conf/indentline.vim
+source ~/.vim/conf/plugin.vim
+source ~/.vim/conf/snip.vim
+source ~/.vim/conf/fzf.vim
+source ~/.vim/conf/gitgutter.vim
+source ~/.vim/conf/vimtex.vim 
+
+set number
+set ruler 
+set laststatus=2
+syntax on
+
+set autoindent
+set smartindent
+set smarttab
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+set expandtab
+
+" highlight Normal ctermbg=NONE
+" colorscheme molokai
+
+filetype plugin on
+filetype indent on
+filetype on
+
+set scrolloff=8         "Start scrolling when we're 8 lines away from margins
+set sidescrolloff=15
+set sidescroll=1
+
+set incsearch       " Find the next match as we type the search
+set hlsearch        " Highlight searches by default
+set ignorecase      " Ignore case when searching... 
+set smartcase       " ...unless we type a capital
+
+set splitbelow
+set splitright
+set cursorline
+
+set mouse=a
+
+map f :NERDTreeToggle
+
+set viminfo='10,\"100,:20,%,n~/.viminfo
+function! ResCur()
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
+endfunction
+
+augroup resCur
+  autocmd!
+  autocmd BufWinEnter * call ResCur()
+augroup END
+
+" set nu! rnu!
+set number relativenumber
+
+filetype plugin indent on    " required
+
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction

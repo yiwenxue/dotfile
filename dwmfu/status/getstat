@@ -1,0 +1,60 @@
+#!/bin/sh
+#
+# a simple shell script for dwm status bar
+# more@ github.com/okiptkn
+#
+# (c) 2018 <Restu Purnomo>
+# Licensing stuff : By the name of the Dark Lord Satania-sama, I hereby granted you the permissions 
+# to do whatever the fuck it is you want to do with this script. No warranty or whatsoever provided.
+#
+
+# UPDATE : scrap this script and use my other getstat(https://github.com/okiptkn/getstat) instead,
+# it comes with more features and less dependencies
+#
+
+_net() {
+        local _GETIWL=$(/sbin/iwgetid -r) # requires wireless_tools package
+        local _GETETH=$(ip a | grep "state UP" | awk '{ORS=""}{print $2}' | cut -d ':' -f 1)
+        local _status="${_GETIWL:_GETETH}"
+        local _off="disconnected"
+        local _status2="${_status:-disconnected}"
+
+        #toggle
+        if [ "$_status2" == "$_status" ];
+        	then
+            echo "${_status2}"
+		else
+            echo "${_status2}"
+		fi
+}
+
+_touchp() {
+        local cmd=$(synclient -l | grep Touchpad | awk 'FNR==1 {print $3}')
+        local on="touchpad on"
+        local off="touchpad off"
+        if [ "${cmd}" = "0" ] ; then
+            echo "${on}"
+        else
+            echo "${off}"
+        fi
+}
+
+_music() {
+        local stat=$(mpc status | grep \# | awk '{print $1}' &2>/dev/null) # requires mpc package
+        local artist=$(mpc -f %artist% current &2>/dev/null)
+        local musicname=$(mpc -f %title% current &2>/dev/null)
+        local text="no media are currently playing"
+
+        if [ "${stat}" ] && [ "${stat}" = "[playing]" ] ; then
+            echo "${artist:0:20} - ${musicname:0:40}"; sleep 5
+                    elif [ "${stat}" ] && [ "${stat}" = "[paused]" ] ; then
+            echo "paused : ${artist:0:20} - ${musicname:0:15}"; sleep 5
+        else
+            echo "${text}"; sleep 5
+        fi
+} 2>/dev/null
+
+    while true; do
+        xsetroot -name "    /$(_music)    /$(_touchp)    /$(_net)    /$(date +'%A, %d %b - %R %Z ')" 
+        sleep 5
+    done
