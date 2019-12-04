@@ -1,0 +1,30 @@
+
+xmonad.hs:8:11: warning: [-Wdeprecations]
+    In the use of ‘defaultTheme’
+    (imported from XMonad.Layout.NoFrillsDecoration, but defined in XMonad.Layout.Decoration):
+    Deprecated: "Use def (from Data.Default, and re-exported by XMonad.Layout.Decoration) instead."
+  |
+8 | myTheme = defaultTheme { activeColor = "#f7a050",
+  |           ^^^^^^^^^^^^
+
+xmonad.hs:9:1: warning: [-Wtabs]
+    Tab character found here, and in 59 further locations.
+    Please use spaces instead.
+  |
+9 |                                                  inactiveColor = "#ff8267",
+  | ^^^^^^^^
+
+xmonad.hs:17:86: warning: [-Wdeprecations]
+    In the use of ‘spacing’ (imported from XMonad.Layout.Spacing):
+    Deprecated: "Use spacingRaw instead."
+   |
+17 | myLayout = noFrillsDeco shrinkText myTheme $ gaps [(U,50), (D,50), (L,75), (R,75)] $ spacing 10 $ emptyBSP
+   |                                                                                      ^^^^^^^
+
+xmonad.hs:19:17: warning: [-Wdeprecations]
+    In the use of ‘defaultConfig’
+    (imported from XMonad, but defined in XMonad.Config):
+    Deprecated: "Use def (from Data.Default, and re-exported by XMonad and XMonad.Config) instead."
+   |
+19 | main = xmonad $ defaultConfig
+   |                 ^^^^^^^^^^^^^

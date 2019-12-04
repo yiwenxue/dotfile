@@ -1,0 +1,172 @@
+[colors]
+background        = #aa000000
+background-alt    = #8866ff99
+foreground        = #ffffff
+foreground-alt    = #000000
+
+[bar/top]
+
+font-0 = Font Awesome 5 Free Solid:size=12;
+font-1 = Font Awesome 5 Brands:size=12;
+font-2 = Font Awesome 5 Free Regular:size=12;
+font-3 = DejaVu Sans Mono:style=Book:size=10;
+font-4 = WenQuanYi Zen Hei Mono:style=Regular:size=10
+
+monitor               = eDP1
+border-color          = ${colors.foreground}
+bottom                = false
+cursor-click          = pointer
+fixed-center          = true
+background            = ${colors.background}
+foreground            = ${colors.foreground}
+module-margin-left    = 0
+module-margin-right   = 0
+spacing               = 0
+offset-x              = 0
+offset-y              = 0 
+override-redirect     = false
+padding-left          = 0
+padding-right         = 0
+radius                = 0
+scroll-down           = i3wm-wsprev
+scroll-up             = i3wm-wsnext
+width                 = 100%
+height                = 35
+
+modules-left = i3 xwindow
+modules-center = 
+modules-right = date
+
+##########################
+##    Modules           ##
+##########################
+
+#freebsd 
+
+###############
+###   i3    ###
+###############
+[module/i3]
+format                      = <label-state> 
+#<label-mode>
+index-sort                  = true
+pin-workspaces              = false
+type                        = internal/i3
+wrapping-scroll             = true
+
+ws-icon-0                   = 1; 
+#browser 
+ws-icon-1                   = 2;
+#terminal
+ws-icon-2                   = 3; 
+#code
+ws-icon-3                   = 4; 
+#document
+ws-icon-4                   = 5;
+#music
+ws-icon-5                   = 6; 
+#file 
+ws-icon-6                   = 7;
+#game 
+ws-icon-7                   = 8;
+#virtualbox
+ws-icon-8                   = 9;
+#bitcoin
+ws-icon-9                   = 10;
+#email
+
+label-focused-font = 1
+label-unfocused-font = 1
+label-urgent-font = 1
+label-mode-font = 2
+
+#label-mode                  = %mode%
+#label-mode-background       = #ffffff
+#label-mode-foreground       = #000000
+#label-mode-padding          = 1
+
+label-focused               = %icon%
+label-focused-background    = ${colors.background-alt}
+label-focused-foreground    = ${colors.foreground-alt}
+label-focused-padding       = 2
+
+label-unfocused             = %icon%
+label-unfocused-background  = ${colors.background}
+label-unfocused-foreground  = ${colors.foreground}
+label-unfocused-padding     = 2
+
+label-urgent                = %icon%
+label-urgent-background     = ${colors.background}
+label-urgent-foreground     = ${colors.foreground}
+label-urgent-padding        = 2
+
+label-visible               = %icon%
+label-visible-foreground    = #ffffff
+label-visible-padding       = 2
+
+##################
+###   xwindow  ###
+##################
+[module/xwindow]
+type = internal/xwindow
+label = |     %title:0:120:...%   
+label-padding = 4
+
+##################
+###   date     ###
+##################
+[module/date]
+type = internal/date
+interval = 1.0
+date = %a %b %d, 
+time = %H:%M
+
+date-alt = %A, %d %B %Y
+time-alt = %H:%M:%S
+
+label = %date% %time%
+format = <label>   
+format-background = ${colors.background}
+format-padding = 3
+
+
+#############
+###  mpd  ###
+#############
+[module/mpd]
+type = internal/mpd
+
+host = 127.0.0.1
+port = 6600
+password = 
+
+; Seconds to sleep between progressbar/song timer sync
+; Default: 1
+interval = 2
+
+; Available tags:
+;   <label-song> (default)
+;   <label-time>
+;   <bar-progress>
+;   <toggle> - gets replaced with <icon-(pause|play)>
+;   <toggle-stop> - gets replaced with <icon-(stop|play)>
+;   <icon-random>
+;   <icon-repeat>
+;   <icon-repeatone>
+;   <icon-prev>
+;   <icon-stop>
+;   <icon-play>
+;   <icon-pause>
+;   <icon-next>
+;   <icon-seekb>
+;   <icon-seekf>
+format-online = <label-song>
+
+; Available tokens:
+;   %artist%
+;   %album%
+;   %date%
+;   %title%
+; Default: %artist% - %title%
+label-song = %title%
+format-online-padding = 3

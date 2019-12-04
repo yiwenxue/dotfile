@@ -1,0 +1,21 @@
+Config {font = "xft:Open Sans:size=11,WenQuanYi Zen Hei:size=11"
+       --, borderColor = "black"
+       --, border = TopB
+       , bgColor = "black"
+       , fgColor = "grey"
+       , allDesktops = True
+       , position = Static { xpos = 0 , ypos = 0, width = 1920, height = 25 }
+       , alignSep = "}{"
+       --, alpha = 192
+       , persistent = True
+       , overrideRedirect = False
+       , template = " %StdinReader% }{ %wlp3s0% | %cpu% | %memory% | <fc=#ee9a00>%date%</fc> | %battery%  "
+       , commands = [ 
+                      Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
+                    , Run Memory ["-t","Mem: <usedratio>%"] 10
+                    , Run Network "wlp3s0" ["-t","<tx>-<rx>KB","-L","0","-H","32", "--normal","green","--high","red"] 10
+                    , Run Date "%a %b %_d %l:%M" "date" 60
+                    , Run BatteryP ["BAT1"] ["-t", "<acstatus>", "-L", "10", "-H", "80", "-l", "red", "-h", "green", "--", "-O", "Charging: <left>%", "-o", "Battery: <left>%"] 60
+                    , Run StdinReader 
+                    ]
+       }
