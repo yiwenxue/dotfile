@@ -1,13 +1,12 @@
-URxvt*font:                        xft:DejaVu Sans Mono:style=Regular:antialias=True:pixelsize=14
-URxvt*boldFont:                    xft:DejaVu Sans Mono:style=Bold:antialias=True:pixelsize=14
-Xft.dpi:    			   96
+URxvt*font:                        xft:Dejavu Sans Mono for Powerline:style=Regular:size=12
+Xft.dpi:    			           96
 URxvt*scrollBar:                   false
 URxvt*borderLess:                  false
 URxvt*internalBorder:              10
 URxvt*depth:                       32
 
 URxvt*perl-lib:                    /home/haron/.config/urxvt/perl
-URxvt*perl-ext-common:             default,clipboard,url-select 
+URxvt*perl-ext-common:             default,clipboard,url-select,resize-font
 URxvt*iso14755:                    false
 URxvt*iso14755_52:                 false
 URxvt*keysym.Control-Shift-C:      perl:clipboard:copy
@@ -27,6 +26,10 @@ URxvt*.cursorColor:  #b7b8b9
 ! black
 URxvt*.color0:       #0c0d0e
 URxvt*.color8:       #737475
+
+URxvt.resize-font.smaller : C-j
+URxvt.resize-font.bigger : C-k
+
 
 ! red
 URxvt*.color1:       #e31a1c
